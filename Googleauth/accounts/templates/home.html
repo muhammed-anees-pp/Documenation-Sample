@@ -6,14 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google OAuth Example - Home</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome, {{ user.username }}!</h1>
-        {% if user.is_authenticated %}
-            <p>You are logged in. Enjoy the restricted content!</p>
-            <a href="{% url 'landing' %}" class="button">Logout</a>
-        {% endif %}
+    <div class="home-container">
+        <nav class="top-nav">
+            <div class="nav-logo">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" onerror="this.src='https://via.placeholder.com/40'; this.onerror=null;">
+                <span>Your App</span>
+            </div>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <div class="user-profile">
+                        <div class="avatar">{{ user.username|slice:":1" }}</div>
+                        <span>{{ user.username }}</span>
+                    </div>
+                    <a href="{% url 'landing' %}" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <div class="welcome-card">
+                <div class="welcome-header">
+                    <h1>Welcome, {{ user.username }}!</h1>
+                    <div class="welcome-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                
+                {% if user.is_authenticated %}
+                    <div class="welcome-body">
+                        <p>You are successfully logged in. Enjoy the restricted content!</p>
+                        <div class="dashboard-preview">
+                            <div class="preview-card">
+                                <i class="fas fa-lock-open"></i>
+                                <h3>Exclusive Content</h3>
+                                <p>Access premium features</p>
+                            </div>
+                            <div class="preview-card">
+                                <i class="fas fa-user-shield"></i>
+                                <h3>Secured Account</h3>
+                                <p>Your data is protected</p>
+                            </div>
+                            <div class="preview-card">
+                                <i class="fas fa-bell"></i>
+                                <h3>Notifications</h3>
+                                <p>Stay updated</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="welcome-footer">
+                        <a href="{% url 'landing' %}" class="btn btn-primary">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+        
+        <footer class="home-footer">
+            <p>&copy; 2025 Your Application. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -6,18 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
-        <form method="post" action="{% url 'account_login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="button">Login</button>
-        </form>
-        <p>Or use a third-party:</p>
-        <a href="{% url 'google_login' %}" class="button">Login with Google</a>
-        <p>Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a></p>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="{% url 'landing' %}" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h2>Login to Your Account</h2>
+                <p class="subtitle">Welcome back! Please enter your credentials</p>
+            </div>
+            
+            <div class="auth-body">
+                <form method="post" action="{% url 'account_login' %}" class="auth-form">
+                    {% csrf_token %}
+                    <div class="form-styled">
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <a href="{% url 'google_login' %}" class="btn btn-google btn-block">
+                    <i class="fab fa-google"></i> Login with Google
+                </a>
+            </div>
+            
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="{% url 'account_signup' %}" class="text-link">Sign up</a></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

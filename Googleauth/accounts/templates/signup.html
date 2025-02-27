@@ -6,17 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h2>Sign Up</h2>
-        <form method="post" action="{% url 'usersignup' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="button">Sign Up</button>
-        </form>
-        <p>Or use a third-party:</p>
-        <a href="{% url 'google_login' %}" class="button">Sign up with Google</a>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="{% url 'landing' %}" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h2>Create an Account</h2>
+                <p class="subtitle">Join our community today</p>
+            </div>
+            
+            <div class="auth-body">
+                <form method="post" action="{% url 'usersignup' %}" class="auth-form">
+                    {% csrf_token %}
+                    <div class="form-styled">
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-user-plus"></i> Sign Up
+                    </button>
+                </form>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <a href="{% url 'google_login' %}" class="btn btn-google btn-block">
+                    <i class="fab fa-google"></i> Sign up with Google
+                </a>
+            </div>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="{% url 'userlogin' %}" class="text-link">Login</a></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

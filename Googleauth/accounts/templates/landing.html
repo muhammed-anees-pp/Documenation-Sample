@@ -7,19 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Google OAuth Example</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Our Application</h1>
-        <p>Please log in to access the content.</p>
-        <br>
-        <a href="{% url 'userlogin' %}" class="button">Login</a>
-        <br>
-        <a href="{% url 'usersignup' %}" class="button">Sign Up</a>
-        <br>
-        <a href="{% url 'account_logout' %}" class="button">Logout</a>
-        <br>
-        <a href="{% provider_login_url 'google' %}" class="button">Login with Google</a>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="{% static 'images/bmw.png' %}" alt="Logo" class="logo" onerror="this.src='https://via.placeholder.com/80'; this.onerror=null;">
+                <h1>Welcome to Our Application</h1>
+                <p class="subtitle">Please log in to access the content</p>
+            </div>
+            
+            <div class="auth-options">
+                <a href="{% provider_login_url 'google' %}" class="btn btn-google">
+                    <i class="fab fa-google"></i> Login with Google
+                </a>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <div class="btn-group">
+                    <a href="{% url 'userlogin' %}" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="{% url 'usersignup' %}" class="btn btn-secondary">
+                        <i class="fas fa-user-plus"></i> Sign Up
+                    </a>
+                </div>
+                
+                <div class="logout-link">
+                    <a href="{% url 'account_logout' %}">
+                        <i class="fas fa-power-off"></i> Logout
+                    </a>
+                </div>
+            </div>
+            
+            <div class="auth-footer">
+                <p>&copy; 2025 Your Application. All rights reserved.</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
